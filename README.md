@@ -113,5 +113,6 @@ Ensure you replace `your_jwt_secret_key` and `your_database_connection_string` w
 - All endpoints requiring authentication must include the **Authorization** header with a valid JWT token.
 - Ensure the `client: not-browser` header is included where required.
 - Passwords should always be encrypted before storage.
-By - Bhavay
+
+ By - Bhavay
 
