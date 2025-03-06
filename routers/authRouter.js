@@ -17,7 +17,7 @@ router.patch(
 	identifier,
 	authController.verifyVerificationCode
 );
-router.patch('/change-password', identifier, authController.changePassword);
+router.put('/change-password', identifier, authController.changePassword);
 router.patch(
 	'/send-forgot-password-code',
 	authController.sendForgotPasswordCode
