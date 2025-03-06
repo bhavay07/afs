@@ -77,7 +77,7 @@ request ->http://localhost:6000/api/posts/single-post?_id=(post_id)
 UPDATE-POST
 7 update post
 
-Method -> POST 
+Method -> PUT 
 
 request -> http://localhost:6000/api/posts/update-post?_id= (post_id) 
 
