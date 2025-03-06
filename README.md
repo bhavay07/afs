@@ -1,99 +1,118 @@
-CREATE
-1 sign-up
+# API Documentation
 
-method-> POST
+## Setup Instructions
 
-request->http://localhost:6000/api/auth/signup
+### 1. Install Dependencies
+Run the following command in your project directory to install required dependencies:
+```sh
+npm install
+```
 
-in body-> 
+### 2. Create an `.env` File
+Create a `.env` file in the root directory and add your API keys and environment variables:
+```
+PORT=6000
+JWT_SECRET=your_jwt_secret_key
+DB_URI=your_database_connection_string
+```
+
+Ensure you replace `your_jwt_secret_key` and `your_database_connection_string` with actual values.
+
+---
+
+## Authentication Endpoints
+
+### 1. User Sign-Up
+**Method:** POST  
+**Endpoint:** `http://localhost:6000/api/auth/signup`  
+**Request Body:**  
+```json
 {
-    "email":"bbc@gmail.com",
-    "password":"Abcd@12345"
+    "email": "bbc@gmail.com",
+    "password": "Abcd@12345"
 }
+```
+**Description:** Creates a new user account.
 
-READ
-2 sign-in
+---
 
-method->POST
- 
-request ->http://localhost:6000/api/auth/signin
+### 2. User Sign-In
+**Method:** POST  
+**Endpoint:** `http://localhost:6000/api/auth/signin`  
+**Description:** Authenticates a user and returns a session token.
 
-UPDATE
-3 Change-passward
+---
 
-method->PATCH
+### 3. Change Password
+**Method:** PATCH  
+**Endpoint:** `http://localhost:6000/api/auth/change-password`  
+**Headers:**  
+- `client: not-browser`  
+- `Authorization: Bearer {jwt_session_token}`  
 
-request -> http://localhost:6000/api/auth/change-password
+**Description:** Allows authenticated users to change their password.
 
-in header -> 
-              client -> not-browser
-   
-              authorization -> bearer{jwt session token}
+---
 
+### 4. Sign Out
+**Method:** POST  
+**Endpoint:** `http://localhost:6000/api/auth/signout`  
+**Description:** Logs out the user and clears authentication session.
 
-()SIGN OUT
+---
 
-method -> POST
+## Post Management Endpoints
 
-Request -> http://localhost:6000/api/auth/signout
- 
+### 5. Create New Post
+**Method:** POST  
+**Endpoint:** `http://localhost:6000/api/posts/create-post`  
+**Headers:**  
+- `client: not-browser`  
+- `Authorization: Bearer {jwt_session_token}`  
 
+**Request Body:**  
+```json
+{
+    "title": "something",
+    "description": "moreeeee"
+}
+```
+**Description:** Allows an authenticated user to create a new post.
 
-POST-CREATION
-4 New-post
- 
-Method -> POST
+---
 
-request -> http://localhost:6000/api/posts/create-post
+### 6. Get All Posts
+**Method:** GET  
+**Endpoint:** `http://localhost:6000/api/posts/all-posts`  
+**Description:** Retrieves all posts from the database.
 
-in header -> 
-              client -> not-browser
-   
-              authorization -> bearer{jwt session token}
+---
 
-in body ->
-            {
-       "title": "something",
-         "description":"moreeeee"
+### 7. Get Single Post
+**Method:** GET  
+**Endpoint:** `http://localhost:6000/api/posts/single-post?_id={post_id}`  
+**Description:** Retrieves a single post based on its ID.
 
-             }
-ALL-POSTS
-5 ALL-post
+---
 
-Method -> GET
+### 8. Update Post
+**Method:** PUT  
+**Endpoint:** `http://localhost:6000/api/posts/update-post?_id={post_id}`  
+**Description:** Updates an existing post with new details.
 
-request ->http://localhost:6000/api/posts/all-posts
+---
 
+### 9. Delete Post
+**Method:** DELETE  
+**Endpoint:** `http://localhost:6000/api/posts/delete-post?_id={post_id}`  
+**Description:** Deletes a post based on its ID.
 
+---
 
-SINGLE-POST
-6 check-post
+## Notes:
+- All endpoints requiring authentication must include the **Authorization** header with a valid JWT token.
+- Ensure the `client: not-browser` header is included where required.
+- Passwords should always be encrypted before storage.
 
-Method -> GET
-
-request ->http://localhost:6000/api/posts/single-post?_id=(post_id)
-
-
-UPDATE-POST
-7 update post
-
-Method -> PUT 
-
-request -> http://localhost:6000/api/posts/update-post?_id= (post_id) 
-
-
-
- DELETE-POST
-7 DELETE POST
-
-Method -> Delete 
- 
-request -> http://localhost:6000/api/posts/delete-post?_id= (post_id)
-
-
-
-
-
-
-
+This documentation provides a structured overview of your authentication and post-management API. Let me know if you need any refinements!
 
